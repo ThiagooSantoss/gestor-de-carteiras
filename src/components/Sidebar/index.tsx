@@ -13,6 +13,27 @@ export const Sidebar = () => {
   const pathname = usePathname();
   const { push } = useRouter();
 
+  const sidebarItemArr = [
+    {
+      isAtivo: pathname == "/ativos",
+      url: "/ativos",
+      texto: "Ativos",
+      Icone: ChartLineUp,
+    },
+    {
+      isAtivo: pathname == "/proventos",
+      url: "/proventos",
+      texto: "Proventos",
+      Icone: PiggyBank,
+    },
+    {
+      isAtivo: pathname == "/carteiras",
+      url: "/carteiras",
+      texto: "Carteiras",
+      Icone: Wallet,
+    },
+  ];
+
   return (
     <aside className="bg-slate-900 h-screen w-72 p-6">
       <header
@@ -24,24 +45,9 @@ export const Sidebar = () => {
       </header>
 
       <ul className="space-y-6">
-        <SidebarItem
-          isAtivo={pathname == "/ativos"}
-          url="/ativos"
-          texto="Ativos"
-          Icone={ChartLineUp}
-        />
-        <SidebarItem
-          isAtivo={pathname == "/proventos"}
-          url="/proventos"
-          texto="Proventos"
-          Icone={PiggyBank}
-        />
-        <SidebarItem
-          isAtivo={pathname == "/carteiras"}
-          url="/carteiras"
-          texto="Carteiras"
-          Icone={Wallet}
-        />
+        {sidebarItemArr.map((item) => (
+          <SidebarItem key={item.texto} {...item} />
+        ))}
       </ul>
     </aside>
   );
