@@ -3,8 +3,10 @@
 import { usePathname, useRouter } from "next/navigation";
 import { SidebarItem } from "./SidebarItem";
 import {
+  Calendar,
   ChartLineUp,
   CurrencyCircleDollar,
+  MagnifyingGlass,
   PiggyBank,
   Wallet,
 } from "@phosphor-icons/react";
@@ -31,6 +33,18 @@ export const Sidebar = () => {
       url: "/carteiras",
       texto: "Carteiras",
       Icone: Wallet,
+    },
+    {
+      isAtivo: pathname == "/calendario",
+      url: "/calendario",
+      texto: "Calendário",
+      Icone: Calendar,
+    },
+    {
+      isAtivo: pathname == "/buscas",
+      url: "/buscas",
+      texto: "Buscas Salvas",
+      Icone: MagnifyingGlass,
     },
   ];
 
