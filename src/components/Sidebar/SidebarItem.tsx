@@ -1,6 +1,6 @@
 "use client";
 
-import { Icon } from "@phosphor-icons/react";
+import { CaretDown, Icon } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 
 interface SidebarItemProps {
@@ -8,10 +8,11 @@ interface SidebarItemProps {
   Icone: Icon;
   isAtivo?: boolean;
   url: string;
+  subMenu?: string[];
 }
 
 export const SidebarItem = (props: SidebarItemProps) => {
-  const { url, texto, Icone, isAtivo = false } = props;
+  const { url, texto, Icone, isAtivo = false, subMenu = [] } = props;
 
   const { push } = useRouter();
 
@@ -20,12 +21,21 @@ export const SidebarItem = (props: SidebarItemProps) => {
     : "text-white hover:text-blue-300";
 
   return (
-    <li
-      className={`${itemClassesExtras} w-fit transition-colors flex gap-2 items-center text-xl cursor-pointer`}
-      onClick={() => push(url)}
-    >
-      <Icone size={32} />
-      <p>{texto}</p>
+    <li className={"space-y-2"} onClick={() => push(url)}>
+      <div
+        className={`${itemClassesExtras} w-fit transition-colors flex gap-2 items-center text-xl cursor-pointer`}
+      >
+        {subMenu.length > 0 && <CaretDown size={16} />}
+        <Icone size={32} />
+        <p>{texto}</p>
+      </div>
+      <ul>
+        {subMenu.map((item) => (
+          <li className="text-white" key={item}>
+            {item}
+          </li>
+        ))}
+      </ul>
     </li>
   );
 };

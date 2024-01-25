@@ -33,12 +33,14 @@ export const Sidebar = () => {
       url: "/carteiras",
       texto: "Carteiras",
       Icone: Wallet,
+      subMenu: ["Configuração", "Rentabilidade", "Transações"],
     },
     {
       isAtivo: pathname == "/calendario",
       url: "/calendario",
       texto: "Calendário",
       Icone: Calendar,
+      subMenu: ["Configuração"],
     },
     {
       isAtivo: pathname == "/buscas",
