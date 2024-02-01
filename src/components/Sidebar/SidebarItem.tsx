@@ -4,12 +4,17 @@ import { CaretDown, CaretRight, Icon } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+interface SubMenuProps {
+  texto: string;
+  url: string;
+}
+
 interface SidebarItemProps {
   texto: string;
   Icone: Icon;
   isAtivo?: boolean;
   url: string;
-  subMenu?: string[];
+  subMenu?: SubMenuProps[];
 }
 
 export const SidebarItem = (props: SidebarItemProps) => {
@@ -46,11 +51,11 @@ export const SidebarItem = (props: SidebarItemProps) => {
         <ul className="ml-6">
           {subMenu.map((subMenuItem) => (
             <li
-              onClick={() => push("subItemURL")}
-              key={subMenuItem}
-              className="text-white cursor-pointer w-fit"
+              onClick={() => push(`${url}/${subMenuItem.url}`)}
+              key={subMenuItem.texto}
+              className="text-white cursor-pointer w-fit hover:opacity-80 transition-opacity"
             >
-              {subMenuItem}
+              {subMenuItem.texto}
             </li>
           ))}
         </ul>
