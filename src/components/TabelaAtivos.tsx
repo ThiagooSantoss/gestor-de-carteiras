@@ -30,32 +30,34 @@ export const TabelaAtivos = () => {
   ];
 
   return (
-    // <ul className="border border-slate-400 rounded">
-    //   {listaDeAtivos.map((item) => (
-    //     <li key={item.codigo} className="p-3">
-    //       <span className="w-48 inline-block">{item.codigo}</span>
-    //       <span className="w-48 inline-block">{item.descricao}</span>
-    //       <span>{item.preco}</span>
-    //     </li>
-    //   ))}
-    // </ul>
-    <table className="border border-slate-400 rounded">
-      <thead>
-        <tr className="text-xl font-medium">
-          <td className="w-48 inline-block p-2">Código</td>
-          <td className="w-48 inline-block">Descrição</td>
-          <td className="p-2">Preço</td>
-        </tr>
-      </thead>
-      <tbody>
-        {listaDeAtivos.map((item) => (
-          <tr key={item.codigo}>
-            <td className="w-48 inline-block p-2">{item.codigo}</td>
-            <td className="w-48 inline-block">{item.descricao}</td>
-            <td className="p-2">{item.preco}</td>
+    <div className="rounded-lg border border-slate-400 overflow-y-hidden">
+      <table className="w-full rounded-lg">
+        <thead>
+          <tr className="text-xl bg-indigo-200 font-medium">
+            <th>
+              <div className="text-left p-2">Código</div>
+            </th>
+
+            <th>
+              <div className="text-left">Descrição</div>
+            </th>
+
+            <th>
+              <div className="text-left">Preço</div>
+            </th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          {listaDeAtivos.map((item) => (
+            <tr className="even:bg-slate-200" key={item.codigo}>
+              <td className="w-[33%] p-2">{item.codigo}</td>
+              <td className="w-[33%]">{item.descricao}</td>
+              <td className="w-[33%]">{item.preco}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
