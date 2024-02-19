@@ -41,10 +41,10 @@ export const TabelaAtivos = () => {
     // </ul>
     <table className="border border-slate-400 rounded">
       <thead>
-        <tr>
-          <th>Código</th>
-          <th>Descrição</th>
-          <th>Preço</th>
+        <tr className="text-xl font-medium">
+          <td className="w-48 inline-block p-2">Código</td>
+          <td className="w-48 inline-block">Descrição</td>
+          <td className="p-2">Preço</td>
         </tr>
       </thead>
       <tbody>
@@ -52,7 +52,7 @@ export const TabelaAtivos = () => {
           <tr key={item.codigo}>
             <td className="w-48 inline-block p-2">{item.codigo}</td>
             <td className="w-48 inline-block">{item.descricao}</td>
-            <td>{item.preco}</td>
+            <td className="p-2">{item.preco}</td>
           </tr>
         ))}
       </tbody>
