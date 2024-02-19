@@ -1,34 +1,7 @@
-import { table } from "console";
+import { listaDeAtivos } from "@/mocks/listaDeAtivos";
+import { converterParaReal } from "@/utils/converterParaReal";
 
 export const TabelaAtivos = () => {
-  const listaDeAtivos = [
-    {
-      codigo: "MGLU3",
-      descricao: "Magalu",
-      preco: 1.95,
-    },
-    {
-      codigo: "BBAS3",
-      descricao: "Banco do Brasil",
-      preco: 55.55,
-    },
-    {
-      codigo: "CPFE3",
-      descricao: "CPFL Energia",
-      preco: 36.03,
-    },
-    {
-      codigo: "ITSA4",
-      descricao: "Itausa S.A",
-      preco: 9.91,
-    },
-    {
-      codigo: "PBR",
-      descricao: "Petróleo brasileiro",
-      preco: 15.65,
-    },
-  ];
-
   return (
     <div className="rounded-lg border border-slate-400 overflow-y-hidden">
       <table className="w-full rounded-lg">
@@ -53,7 +26,7 @@ export const TabelaAtivos = () => {
             <tr className="even:bg-slate-200" key={item.codigo}>
               <td className="w-[33%] p-2">{item.codigo}</td>
               <td className="w-[33%]">{item.descricao}</td>
-              <td className="w-[33%]">{item.preco}</td>
+              <td className="w-[33%]">{converterParaReal(item.preco)}</td>
             </tr>
           ))}
         </tbody>
