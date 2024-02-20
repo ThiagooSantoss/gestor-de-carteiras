@@ -1,7 +1,12 @@
-import { TabelaAtivos } from "@/components/TabelaAtivos";
+"use client";
+
+import dynamic from "next/dynamic";
 import { usuario } from "@/mocks/usuarioAtual";
 import { computaMensagemDeBoasVindas } from "@/utils/computaMensagemDeBoasVindas";
 import { converterParaReal } from "@/utils/converterParaReal";
+import ApexCharts from "apexcharts";
+
+const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function Carteiras() {
   const patrimonioFormatado = converterParaReal(usuario.patrimonio_total);
@@ -13,6 +18,28 @@ export default function Carteiras() {
   const mensagemDeBoasVindas = computaMensagemDeBoasVindas(
     usuario.primeiro_nome
   );
+
+  const series = [44, 55, 13, 43, 22];
+
+  const options: ApexCharts.ApexOptions = {
+    chart: {
+      width: 380,
+    },
+    labels: ["MGLU4", "TAURS4", "BSBBA3", "HGLG11", "IBAS3"],
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200,
+          },
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+    ],
+  };
 
   return (
     <div>
@@ -28,7 +55,13 @@ export default function Carteiras() {
       </header>
 
       <main className="mt-6">
-        <TabelaAtivos />
+        <ApexChart
+          type="pie"
+          series={series}
+          options={options}
+          height={200}
+          width={500}
+        />
       </main>
     </div>
   );
