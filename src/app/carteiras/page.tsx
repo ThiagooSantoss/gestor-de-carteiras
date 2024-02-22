@@ -5,10 +5,14 @@ import { usuario } from "@/mocks/usuarioAtual";
 import { computaMensagemDeBoasVindas } from "@/utils/computaMensagemDeBoasVindas";
 import { converterParaReal } from "@/utils/converterParaReal";
 import ApexCharts from "apexcharts";
+import { useAtivosDoUsuario } from "@/hooks/useAtivosDoUsuario";
+import { TabelaAtivosDoUsuario } from "@/components/TabelaAtivosDoUsuario";
 
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function Carteiras() {
+  const { ativosDoUsuario } = useAtivosDoUsuario();
+
   const patrimonioFormatado = converterParaReal(usuario.patrimonio_total);
 
   const contaInvestimentoFormatado = converterParaReal(
@@ -19,26 +23,19 @@ export default function Carteiras() {
     usuario.primeiro_nome
   );
 
-  const series = [44, 55, 13, 43, 22];
+  const series: number[] = ativosDoUsuario.map((ativo) => ativo.total);
 
   const options: ApexCharts.ApexOptions = {
-    chart: {
-      width: 380,
-    },
-    labels: ["MGLU4", "TAURS4", "BSBBA3", "HGLG11", "IBAS3"],
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          chart: {
-            width: 200,
-          },
-          legend: {
-            position: "bottom",
-          },
-        },
+    labels: ativosDoUsuario.map((ativo) => ativo.codigo),
+    tooltip: {
+      y: {
+        formatter: (val) => converterParaReal(val),
       },
-    ],
+    },
+    legend: {
+      show: false,
+    },
+    chart: {},
   };
 
   return (
@@ -54,14 +51,10 @@ export default function Carteiras() {
         </h6>
       </header>
 
-      <main className="mt-6">
-        <ApexChart
-          type="pie"
-          series={series}
-          options={options}
-          height={200}
-          width={500}
-        />
+      <main className="mt-6 space-y-10">
+        <ApexChart type="pie" series={series} options={options} height={400} />
+
+        <TabelaAtivosDoUsuario ativosDoUsuario={ativosDoUsuario} />
       </main>
     </div>
   );

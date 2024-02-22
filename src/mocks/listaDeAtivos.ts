@@ -1,4 +1,6 @@
-export const listaDeAtivos = [
+import { Ativo } from "@/types/ativo";
+
+export const listaDeAtivos: Ativo[] = [
   {
     codigo: "MGLU3",
     descricao: "Magalu",
