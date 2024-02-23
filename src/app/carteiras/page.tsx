@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { usuario } from "@/mocks/usuarioAtual";
 import { computaMensagemDeBoasVindas } from "@/utils/computaMensagemDeBoasVindas";
 import { converterParaReal } from "@/utils/converterParaReal";
-import ApexCharts from "apexcharts";
 import { useAtivosDoUsuario } from "@/hooks/useAtivosDoUsuario";
 import { TabelaAtivosDoUsuario } from "@/components/TabelaAtivosDoUsuario";
 
@@ -52,7 +51,13 @@ export default function Carteiras() {
       </header>
 
       <main className="mt-6 space-y-10">
-        <ApexChart type="pie" series={series} options={options} height={400} />
+        <ApexChart
+          type="pie"
+          series={series}
+          options={options}
+          width={"100%"}
+          height={400}
+        />
 
         <TabelaAtivosDoUsuario ativosDoUsuario={ativosDoUsuario} />
       </main>
