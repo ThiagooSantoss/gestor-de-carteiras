@@ -1,0 +1,61 @@
+{
+    "ativos_usuario": [
+        {
+            "codigo": "BBAS3",
+            "descricao": "Banco do Brasil",
+            "precoComprado": 12.5,
+            "quantidadeComprada": 10
+        },
+        {
+            "codigo": "TASA4",
+            "descricao": "Taurus Armas",
+            "precoComprado": 10.74,
+            "quantidadeComprada": 15
+        },
+        {
+            "codigo": "TAEE1",
+            "descricao": "Taesa S.A.",
+            "precoComprado": 15.8,
+            "quantidadeComprada": 12
+        },
+        {
+            "codigo": "CMIG4",
+            "descricao": "Energia de Minas Gerais",
+            "precoComprado": 30.02,
+            "quantidadeComprada": 20
+        }
+    ],
+    "ativos": [
+        {
+            "codigo": "MGLU3",
+            "descricao": "Magalu",
+            "preco": 1.95
+        },
+        {
+            "codigo": "BBAS3",
+            "descricao": "Banco do Brasil",
+            "preco": 55.55
+        },
+        {
+            "codigo": "CPFE3",
+            "descricao": "CPFL Energia",
+            "preco": 36.03
+        },
+        {
+            "codigo": "ITSA4",
+            "descricao": "Itausa S.A",
+            "preco": 9.91
+        },
+        {
+            "codigo": "PBR",
+            "descricao": "Petróleo brasileiro",
+            "preco": 15.65
+        }
+    ],
+    "usuario": {
+        "primeiro_nome": "Thiago",
+        "ultimo_nome": "Santos",
+        "patrimonio_total": 1000000,
+        "conta_investimento": 20000
+    }
+}
