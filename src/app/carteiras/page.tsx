@@ -52,7 +52,13 @@ export default function Carteiras() {
       </header>
 
       <main className="mt-6 space-y-10">
-        <ApexChart type="pie" series={series} options={options} height={400} />
+        <ApexChart
+          type="pie"
+          series={series}
+          options={options}
+          width={"100%"}
+          height={400}
+        />
 
         <TabelaAtivosDoUsuario ativosDoUsuario={ativosDoUsuario} />
       </main>
