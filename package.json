@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fake-server": "npx json-server server.json -p 3333 -w"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",

@@ -4,8 +4,8 @@ import dynamic from "next/dynamic";
 import { usuario } from "@/mocks/usuarioAtual";
 import { computaMensagemDeBoasVindas } from "@/utils/computaMensagemDeBoasVindas";
 import { converterParaReal } from "@/utils/converterParaReal";
-import { useAtivosDoUsuario } from "@/hooks/useAtivosDoUsuario";
 import { TabelaAtivosDoUsuario } from "@/components/TabelaAtivosDoUsuario";
+import { useAtivosDoUsuario } from "@/hooks/useAtivosDoUsuario";
 
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -22,10 +22,10 @@ export default function Carteiras() {
     usuario.primeiro_nome
   );
 
-  const series: number[] = ativosDoUsuario.map((ativo) => ativo.total);
+  const series = ativosDoUsuario.map((ativo) => ativo?.total ?? 0);
 
   const options: ApexCharts.ApexOptions = {
-    labels: ativosDoUsuario.map((ativo) => ativo.codigo),
+    labels: ativosDoUsuario?.map((ativo) => ativo.codigo),
     tooltip: {
       y: {
         formatter: (val) => converterParaReal(val),
