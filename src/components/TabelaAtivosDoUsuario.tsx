@@ -30,7 +30,7 @@ export const TabelaAtivosDoUsuario = (props: TabelaAtivosDoUsuarioProps) => {
             </th>
 
             <th>
-              <div className="text-right pr-6">Total Comprado</div>
+              <div className="text-center pr-6">Total Comprado</div>
             </th>
           </tr>
         </thead>
