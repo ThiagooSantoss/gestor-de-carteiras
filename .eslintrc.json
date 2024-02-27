@@ -16,6 +16,7 @@
   },
   "plugins": [
     "@typescript-eslint",
+    "@tanstack/eslint-plugin-query"
     // "prettier"
   ],
 }

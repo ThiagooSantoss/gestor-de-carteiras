@@ -1,16 +1,42 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { usuario } from "@/mocks/usuarioAtual";
 import { computaMensagemDeBoasVindas } from "@/utils/computaMensagemDeBoasVindas";
 import { converterParaReal } from "@/utils/converterParaReal";
 import { TabelaAtivosDoUsuario } from "@/components/TabelaAtivosDoUsuario";
 import { useAtivosDoUsuario } from "@/hooks/useAtivosDoUsuario";
+import { Suspense, lazy } from "react";
+import { Shimmer } from "@/components/Shimmer";
 
-const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
+const ApexChart = lazy(() => import("react-apexcharts"));
+
+const ShimmerGrafico = () => (
+  <Shimmer isRedondo className="mx-auto" height={379} width={370} />
+);
+
+const ShimmerLoading = () => (
+  <main className="mt-6 space-y-10">
+    <ShimmerGrafico />
+
+    <div className="space-y-1">
+      <Shimmer className="mb-2" height={56} width={"100%"} />
+
+      <Shimmer height={40} width={"100%"} />
+      <Shimmer height={40} width={"100%"} />
+      <Shimmer height={40} width={"100%"} />
+      <Shimmer height={40} width={"100%"} />
+      <Shimmer height={40} width={"100%"} />
+      <Shimmer height={40} width={"100%"} />
+    </div>
+  </main>
+);
 
 export default function Carteiras() {
-  const { ativosDoUsuario } = useAtivosDoUsuario();
+  const {
+    data: ativosDoUsuario,
+    isFetching: carregando,
+    refetch,
+  } = useAtivosDoUsuario();
 
   const patrimonioFormatado = converterParaReal(usuario.patrimonio_total);
 
@@ -50,17 +76,30 @@ export default function Carteiras() {
         </h6>
       </header>
 
-      <main className="mt-6 space-y-10">
-        <ApexChart
-          type="pie"
-          series={series}
-          options={options}
-          width={"100%"}
-          height={400}
-        />
+      {carregando ? (
+        <ShimmerLoading />
+      ) : (
+        <main className="mt-6 space-y-10">
+          <Suspense fallback={<ShimmerGrafico />}>
+            <ApexChart
+              type="pie"
+              series={series}
+              options={options}
+              width={"100%"}
+              height={400}
+            />
+          </Suspense>
 
-        <TabelaAtivosDoUsuario ativosDoUsuario={ativosDoUsuario} />
-      </main>
+          <TabelaAtivosDoUsuario ativosDoUsuario={ativosDoUsuario} />
+
+          <button
+            onClick={() => refetch()}
+            className="p-2 rounded bg-slate-400 text-white hover:bg-slate-200 hover:text-black"
+          >
+            Refetch
+          </button>
+        </main>
+      )}
     </div>
   );
 }

@@ -1,28 +1,29 @@
 import { api } from "@/services/api";
 import { AtivoDoUsuario } from "@/types/ativoDoUsuario";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { AxiosResponse } from "axios";
 
-export const useAtivosDoUsuario = () => {
-  const [ativosDoUsuario, setAtivosDoUsuario] = useState<AtivoDoUsuario[]>([]);
+export const ATIVOS_DO_USUARIO_KEY = "ativosDoUsuario";
 
-  useEffect(() => {
-    const getAtivosDoUsuario = async () => {
-      const { data } = await api.get("ativos_usuario");
+export async function getAtivosDoUsuario(): Promise<AtivoDoUsuario[]> {
+  const { data }: AxiosResponse<AtivoDoUsuario[]> = await api.get(
+    "ativos_usuario"
+  );
 
-      const ativosDoUsuarioModificado: AtivoDoUsuario[] = data.map(
-        (ativo: AtivoDoUsuario) => {
-          return {
-            ...ativo,
-            total: ativo.precoComprado * ativo.quantidadeComprada,
-          };
-        }
-      );
-
-      setAtivosDoUsuario(ativosDoUsuarioModificado);
+  const ativosDoUsuarioModificado = data.map((ativo: AtivoDoUsuario) => {
+    return {
+      ...ativo,
+      total: ativo.precoComprado * ativo.quantidadeComprada,
     };
+  });
 
-    getAtivosDoUsuario();
-  }, []);
+  return ativosDoUsuarioModificado;
+}
 
-  return { ativosDoUsuario };
-};
+export function useAtivosDoUsuario() {
+  return useQuery({
+    queryKey: [ATIVOS_DO_USUARIO_KEY],
+    queryFn: getAtivosDoUsuario,
+    initialData: [],
+  });
+}
