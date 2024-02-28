@@ -32,11 +32,8 @@ const ShimmerLoading = () => (
 );
 
 export default function Carteiras() {
-  const {
-    data: ativosDoUsuario,
-    isFetching: carregando,
-    refetch,
-  } = useAtivosDoUsuario();
+  const { data: ativosDoUsuario, isFetching: carregando } =
+    useAtivosDoUsuario();
 
   const patrimonioFormatado = converterParaReal(usuario.patrimonio_total);
 
@@ -91,13 +88,6 @@ export default function Carteiras() {
           </Suspense>
 
           <TabelaAtivosDoUsuario ativosDoUsuario={ativosDoUsuario} />
-
-          <button
-            onClick={() => refetch()}
-            className="p-2 rounded bg-slate-400 text-white hover:bg-slate-200 hover:text-black"
-          >
-            Refetch
-          </button>
         </main>
       )}
     </div>
