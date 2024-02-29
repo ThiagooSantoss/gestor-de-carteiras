@@ -5,6 +5,7 @@ import { SidebarItem } from "./SidebarItem";
 import {
   Calendar,
   ChartLineUp,
+  Coins,
   CurrencyCircleDollar,
   MagnifyingGlass,
   PiggyBank,
@@ -16,6 +17,12 @@ export const Sidebar = () => {
   const { push } = useRouter();
 
   const sidebarItemArr = [
+    {
+      isAtivo: pathname.includes("/conta-pessoal"),
+      url: "/conta-pessoal",
+      texto: "Conta Pessoal",
+      Icone: Coins,
+    },
     {
       isAtivo: pathname.includes("/ativos"),
       url: "/ativos",
