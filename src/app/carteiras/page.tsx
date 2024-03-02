@@ -1,12 +1,12 @@
 "use client";
 
-import { usuario } from "@/mocks/usuarioAtual";
 import { computaMensagemDeBoasVindas } from "@/utils/computaMensagemDeBoasVindas";
 import { converterParaReal } from "@/utils/converterParaReal";
 import { TabelaAtivosDoUsuario } from "@/components/TabelaAtivosDoUsuario";
 import { useAtivosDoUsuario } from "@/hooks/useAtivosDoUsuario";
 import { Suspense, lazy } from "react";
 import { Shimmer } from "@/components/Shimmer";
+import { useUsuario } from "@/hooks/useUsuario";
 
 const ApexChart = lazy(() => import("react-apexcharts"));
 
@@ -34,6 +34,8 @@ const ShimmerLoading = () => (
 export default function Carteiras() {
   const { data: ativosDoUsuario, isFetching: carregando } =
     useAtivosDoUsuario();
+
+  const { data: usuario } = useUsuario();
 
   const patrimonioFormatado = converterParaReal(usuario.patrimonio_total);
 

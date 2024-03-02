@@ -1,7 +1,11 @@
-import { listaDeAtivos } from "@/mocks/listaDeAtivos";
+"use client";
+
+import { useListaDeAtivos } from "@/hooks/useListaDeAtivos";
 import { converterParaReal } from "@/utils/converterParaReal";
 
 export const TabelaAtivos = () => {
+  const { data: listaDeAtivos } = useListaDeAtivos();
+
   return (
     <div className="rounded-lg border border-slate-400 overflow-y-hidden">
       <table className="w-full rounded-lg">

@@ -54,8 +54,16 @@
     ],
     "usuario": {
         "primeiro_nome": "Thiago",
-        "ultimo_nome": "Santos",
+        "sobrenome": "Santos",
         "patrimonio_total": 1000000,
-        "conta_investimento": 20000
+        "conta_investimento": 20000,
+        "entradas": {
+            "total": 200,
+            "ultimo_registro": "2024-03-01T22:55:30.994Z"
+        },
+        "saidas": {
+            "total": 500,
+            "ultimo_registro": "2024-02-25T19:55:30.994Z"
+        }
     }
 }

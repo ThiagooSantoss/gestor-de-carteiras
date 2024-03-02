@@ -1,8 +1,12 @@
+"use client";
+
 import { TabelaAtivos } from "@/components/TabelaAtivos";
-import { usuario } from "@/mocks/usuarioAtual";
+import { useUsuario } from "@/hooks/useUsuario";
 import { computaMensagemDeBoasVindas } from "@/utils/computaMensagemDeBoasVindas";
 
 export default function Ativos() {
+  const { data: usuario } = useUsuario();
+
   const mensagemDeBoasVindas = computaMensagemDeBoasVindas(
     usuario.primeiro_nome
   );
@@ -13,6 +17,7 @@ export default function Ativos() {
         <h1 className="text-4xl font-medium">{mensagemDeBoasVindas}</h1>
         <h6 className="text-xl">Estes são os ativos disponíveis no momento:</h6>
       </header>
+
       <TabelaAtivos />
     </div>
   );

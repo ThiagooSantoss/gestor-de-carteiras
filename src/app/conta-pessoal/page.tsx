@@ -1,10 +1,26 @@
 "use client";
-import { CardLodFinanceiro } from "@/components/CardLogFinanceiro";
+
+import { CardLogFinanceiro } from "@/components/CardLogFinanceiro";
+import { useUsuario } from "@/hooks/useUsuario";
 
 export default function ContaPessoal() {
-  return <CardLodFinanceiro
-   entradas="Entradas" 
-   valor={200} 
-   texto="Última entrada em 10 de outubro" 
-   />;
+  const { data } = useUsuario();
+
+  const { entrada, saida } = data;
+
+  return (
+    <div className="flex items-center gap-4">
+      <CardLogFinanceiro
+        isEntrada
+        valor={entrada?.valor}
+        ultimoRegistro={entrada?.ultimo_registro}
+      />
+
+      <CardLogFinanceiro
+        isEntrada={false}
+        valor={saida?.valor}
+        ultimoRegistro={saida?.ultimo_registro}
+      />
+    </div>
+  );
 }
