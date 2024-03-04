@@ -1,5 +1,5 @@
 interface MovimentacaoGeral {
-  valor: number;
+  total: number;
   ultimo_registro: string;
 }
 
@@ -9,6 +9,6 @@ export interface Usuario {
   sobrenome: string;
   patrimonio_total: number;
   conta_investimento: number;
-  entrada: MovimentacaoGeral;
-  saida: MovimentacaoGeral;
+  entradas: MovimentacaoGeral;
+  saidas: MovimentacaoGeral;
 }

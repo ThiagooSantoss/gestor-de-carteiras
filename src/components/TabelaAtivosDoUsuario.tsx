@@ -37,7 +37,7 @@ export const TabelaAtivosDoUsuario = (props: TabelaAtivosDoUsuarioProps) => {
 
         <tbody>
           {ativosDoUsuario.map((item) => (
-            <tr className="even:bg-slate-200 h-10" key={item.codigo}>
+            <tr className="even:bg-slate-200 odd:bg-white h-10" key={item.codigo}>
               <td className="w-[10%] pl-6 text-center">{item.codigo}</td>
               <td className="w-[30%] text-center">{item.descricao}</td>
               <td className="w-[20%] text-center">

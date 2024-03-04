@@ -3,7 +3,7 @@ export const converterParaReal = (valor: number) => {
     style: "currency",
     currency: "BRL",
     maximumFractionDigits: 2,
-  }).format(valor);
+  }).format(valor ?? 0);
 
   return valorFormatado;
 };

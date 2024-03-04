@@ -22,7 +22,7 @@ export default function RootLayout({
         <ReactQueryProvider>
           <div className="flex">
             <Sidebar />
-            <div className="p-4 w-full">{children}</div>
+            <div className="bg-gradient-to-b from-sky-50 to-slate-200 p-4 w-full">{children}</div>
           </div>
         </ReactQueryProvider>
       </body>

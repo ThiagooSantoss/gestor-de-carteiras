@@ -1,3 +1,4 @@
+"use client"
 import { computaDiaEMes } from "@/utils/computaDiaEMes";
 import { converterParaReal } from "@/utils/converterParaReal";
 import { ArrowCircleDown, ArrowCircleUp } from "@phosphor-icons/react";
@@ -10,6 +11,7 @@ interface CardLogFinanceiroProps {
 
 export const CardLogFinanceiro = (props: CardLogFinanceiroProps) => {
   const { isEntrada, valor, ultimoRegistro } = props;
+console.log(props);
 
   const fraseUltimoRegistro = `Última ${
     isEntrada ? "entrada" : "saída"

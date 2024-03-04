@@ -27,7 +27,7 @@ export const TabelaAtivos = () => {
 
         <tbody>
           {listaDeAtivos.map((item) => (
-            <tr className="even:bg-slate-200" key={item.codigo}>
+            <tr className="even:bg-slate-200 odd:bg-white" key={item.codigo}>
               <td className="w-[33%] p-2">{item.codigo}</td>
               <td className="w-[33%]">{item.descricao}</td>
               <td className="w-[33%]">{converterParaReal(item.preco)}</td>
