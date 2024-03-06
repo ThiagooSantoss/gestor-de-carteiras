@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import ReactQueryProvider from "../../providers/ReactQueryProvider";
+import { useState } from "react";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
         <ReactQueryProvider>
           <div className="flex">
             <Sidebar />
-            <div className="bg-gradient-to-b from-sky-50 to-slate-200 p-4 w-full">{children}</div>
+            <div className="bg-gradient-to-b from-sky-50 to-slate-300 p-4 w-full">
+              {children}
+            </div>
           </div>
         </ReactQueryProvider>
       </body>

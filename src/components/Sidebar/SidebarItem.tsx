@@ -2,7 +2,7 @@
 
 import { CaretDown, CaretRight, Icon } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SubMenuProps {
   texto: string;
@@ -23,6 +23,7 @@ export const SidebarItem = (props: SidebarItemProps) => {
   const { push } = useRouter();
 
   const [estaEscondidoSubMenu, setEstaEscondidoSubMenu] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const itemClassesExtras = isAtivo
     ? "bg-blue-100 p-2 rounded text-gray-700 hover:text-gray-700"
@@ -33,12 +34,19 @@ export const SidebarItem = (props: SidebarItemProps) => {
   function handleCliqueNoItem() {
     push(url);
     setEstaEscondidoSubMenu(!estaEscondidoSubMenu);
+    setIsLoading(true);
   }
+
+  useEffect(() => {
+    if (isAtivo) setIsLoading(false);
+  }, [isAtivo]);
 
   return (
     <li className={"space-y-2"}>
       <div
-        className={`${itemClassesExtras} w-fit transition-colors flex gap-2 items-center text-xl cursor-pointer`}
+        className={`${itemClassesExtras} w-fit transition-colors flex gap-2 items-center text-xl ${
+          isLoading ? "cursor-wait" : "cursor-pointer"
+        }`}
         onClick={() => handleCliqueNoItem()}
       >
         {subMenu.length > 0 && <Seta size={16} />}
