@@ -6,7 +6,7 @@ import { AxiosResponse } from "axios";
 export const LISTA_DE_ATIVOS_KEY = "listaDeAtivos";
 
 export async function getListaDeAtivos(): Promise<Ativo[]> {
-  const { data }: AxiosResponse<Ativo[]> = await api.get("ativos");
+  const { data }: AxiosResponse<Ativo[]> = await api.get("ativo");
 
   return data;
 }
