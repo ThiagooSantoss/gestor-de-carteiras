@@ -2,13 +2,14 @@
 
 import { CardLogFinanceiro } from "@/components/CardLogFinanceiro";
 import { CardShimmer } from "@/components/CardLogFinanceiro/Card.shimmer";
+import { useTotalTransacoes } from "@/hooks/useTotalTransacoes";
 import { useUsuario } from "@/hooks/useUsuario";
 import { computaMensagemDeBoasVindas } from "@/utils/computaMensagemDeBoasVindas";
 
 export default function ContaPessoal() {
-  const { data: usuario, isFetching: carregando } = useUsuario();
-
-  const { entradas, saidas } = usuario;
+  const { data: usuario } = useUsuario();
+  const { data: totalTransacoes, isFetching: carregando } =
+    useTotalTransacoes();
 
   const mensagemDeBoasVindas = computaMensagemDeBoasVindas(
     usuario.primeiro_nome
@@ -31,14 +32,14 @@ export default function ContaPessoal() {
           <>
             <CardLogFinanceiro
               isEntrada
-              valor={entradas?.total}
-              ultimoRegistro={entradas?.ultimo_registro}
+              valor={totalTransacoes.valor_total_entradas}
+              ultimoRegistro={totalTransacoes.data_ultima_entrada}
             />
 
             <CardLogFinanceiro
               isEntrada={false}
-              valor={saidas?.total}
-              ultimoRegistro={saidas?.ultimo_registro}
+              valor={totalTransacoes.valor_total_saidas}
+              ultimoRegistro={totalTransacoes.data_ultima_saida}
             />
           </>
         )}

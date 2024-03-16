@@ -6,7 +6,7 @@ import { AxiosResponse } from "axios";
 export const USUARIO_KEY = "usuario";
 
 export async function getUsuario(): Promise<Usuario> {
-  const { data: usuario }: AxiosResponse<Usuario> = await api.get("usuario");
+  const { data: usuario }: AxiosResponse<Usuario> = await api.get("usuario/1");
 
   return {
     ...usuario,
