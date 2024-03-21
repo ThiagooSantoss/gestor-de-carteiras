@@ -1,6 +1,14 @@
-import { format, formatISO, parseISO } from "date-fns";
-import { ptBR } from "date-fns/locale";
+"use client";
 
-export const computaDiaEMes = (data: string) =>
+import { format, parseISO } from "date-fns";
+import { toast } from "react-toastify";
 
-  format(parseISO( data ?? 0), "dd 'de' MMMM");
+export const computaDiaEMes = (data: string) => {
+  try {
+    const dataFormatada = format(parseISO(data ?? 0), "dd 'de' MMMM");
+    return dataFormatada;
+  } catch (error) {
+    toast.error("Data inválida");
+    return "-";
+  }
+};

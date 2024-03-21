@@ -3,7 +3,8 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
 import ReactQueryProvider from "../../providers/ReactQueryProvider";
-import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={poppins.className}>
         <ReactQueryProvider>
           <div className="flex">
+            <ToastContainer />
             <Sidebar />
             <div className="bg-gradient-to-b from-sky-50 to-slate-300 p-4 w-full">
               {children}
