@@ -6,9 +6,7 @@ import { AxiosResponse } from "axios";
 export const ATIVOS_DO_USUARIO_KEY = "ativosDoUsuario";
 
 export async function getAtivosDoUsuario(): Promise<AtivoDoUsuario[]> {
-  const { data }: AxiosResponse<AtivoDoUsuario[]> = await api.get(
-    "ativos_usuario"
-  );
+  const { data }: AxiosResponse<AtivoDoUsuario[]> = await api.get("carteira");
 
   const ativosDoUsuarioModificado = data.map((ativo: AtivoDoUsuario) => {
     return {

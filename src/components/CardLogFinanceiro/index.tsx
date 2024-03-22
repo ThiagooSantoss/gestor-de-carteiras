@@ -13,9 +13,14 @@ interface CardLogFinanceiroProps {
 export const CardLogFinanceiro = (props: CardLogFinanceiroProps) => {
   const { isEntrada, valor, ultimoRegistro } = props;
 
-  const fraseUltimoRegistro = `Última ${
-    isEntrada ? "entrada" : "saída"
-  } em ${computaDiaEMes(ultimoRegistro)}`;
+  const tipoRegistro = isEntrada ? "entrada" : "saída";
+  let fraseUltimoRegistro = `Não há registros para ${tipoRegistro}`;
+
+  if (ultimoRegistro) {
+    fraseUltimoRegistro = `Última ${tipoRegistro} em ${computaDiaEMes(
+      ultimoRegistro
+    )}`;
+  }
 
   return (
     <div className="p-5 text-white w-80 bg-slate-800 rounded-md">
@@ -30,7 +35,6 @@ export const CardLogFinanceiro = (props: CardLogFinanceiroProps) => {
       </div>
 
       <p className="font-semibold text-xl">{converterParaReal(valor)}</p>
-
       <p className="mt-1 text-slate-400 text-sm">{fraseUltimoRegistro}</p>
     </div>
   );
