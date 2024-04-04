@@ -19,14 +19,9 @@ const ShimmerLoading = () => (
     <ShimmerGrafico />
 
     <div className="space-y-1">
-      <Shimmer className="mb-2" height={56} width={"100%"} />
-
-      <Shimmer height={40} width={"100%"} />
-      <Shimmer height={40} width={"100%"} />
-      <Shimmer height={40} width={"100%"} />
-      <Shimmer height={40} width={"100%"} />
-      <Shimmer height={40} width={"100%"} />
-      <Shimmer height={40} width={"100%"} />
+      {Array.from({ length: 6 }).map(() => (
+        <Shimmer height={40} width={"100%"} />
+      ))}
     </div>
   </main>
 );
@@ -47,10 +42,10 @@ export default function Carteiras() {
     usuario.primeiro_nome
   );
 
-  const series = ativosDoUsuario.map((ativo) => ativo?.total ?? 0);
+  const series = carteiraUsuario?.ativos?.map((ativo) => ativo?.total ?? 0);
 
   const options: ApexCharts.ApexOptions = {
-    labels: ativosDoUsuario?.map((ativo) => ativo.codigo),
+    labels: carteiraUsuario?.ativos?.map((ativo) => ativo.codigo),
     tooltip: {
       y: {
         formatter: (val) => converterParaReal(val),
@@ -89,7 +84,7 @@ export default function Carteiras() {
             />
           </Suspense>
 
-          <TabelaAtivosDoUsuario ativosDoUsuario={ativosDoUsuario} />
+          <TabelaAtivosDoUsuario ativosDoUsuario={carteiraUsuario?.ativos} />
         </main>
       )}
     </div>

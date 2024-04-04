@@ -1,4 +1,4 @@
-import { AtivoDoUsuario } from "@/types/ativoDoUsuario";
+import { AtivoDoUsuario } from "@/types/ativo";
 import { converterParaReal } from "@/utils/converterParaReal";
 
 interface TabelaAtivosDoUsuarioProps {
@@ -22,7 +22,11 @@ export const TabelaAtivosDoUsuario = (props: TabelaAtivosDoUsuarioProps) => {
             </th>
 
             <th>
-              <div className="text-center">Preço Comprado</div>
+              <div className="text-center">Preço Médio</div>
+            </th>
+
+            <th>
+              <div className="text-center">Preço Atual</div>
             </th>
 
             <th>
@@ -37,14 +41,23 @@ export const TabelaAtivosDoUsuario = (props: TabelaAtivosDoUsuarioProps) => {
 
         <tbody>
           {ativosDoUsuario.map((item) => (
-            <tr className="even:bg-slate-200 odd:bg-white h-10" key={item.codigo}>
+            <tr
+              className="even:bg-slate-200 odd:bg-white h-10"
+              key={item.codigo}
+            >
               <td className="w-[10%] pl-6 text-center">{item.codigo}</td>
+
               <td className="w-[30%] text-center">{item.descricao}</td>
+
               <td className="w-[20%] text-center">
-                {converterParaReal(item.precoComprado)}
+                {converterParaReal(item.preco_medio)}
               </td>
 
-              <td className="w-[20%] text-center">{item.quantidadeComprada}</td>
+              <td className="w-[20%] text-center">
+                {converterParaReal(item.preco)}
+              </td>
+
+              <td className="w-[20%] text-center">{item.qtde}</td>
 
               <td className="w-[20%] text-center pr-6">
                 {converterParaReal(item.total ?? 0)}

@@ -13,7 +13,7 @@ export async function getCarteirasUsuario(): Promise<CarteiraUsuario> {
   const carteirasUsuarioModificado = data[0].ativos.map((ativo) => {
     return {
       ...ativo,
-      total: ativo.preco * ativo.,
+      // total: ativo.preco * ativo.,
     };
   });
 
